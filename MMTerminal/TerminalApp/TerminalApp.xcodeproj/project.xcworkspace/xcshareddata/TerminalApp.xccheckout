@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6A2BDB8E-3A9A-419C-B13D-91A7C3498DAB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TerminalApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EC37DD50-7A84-4F6D-B272-FFA7C2585420</key>
+		<string>https://github.com/marcmatta/UI-Components.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MMTerminal/TerminalApp/TerminalApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EC37DD50-7A84-4F6D-B272-FFA7C2585420</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/marcmatta/UI-Components.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EC37DD50-7A84-4F6D-B272-FFA7C2585420</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EC37DD50-7A84-4F6D-B272-FFA7C2585420</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UI Components</string>
+		</dict>
+	</array>
+</dict>
+</plist>
