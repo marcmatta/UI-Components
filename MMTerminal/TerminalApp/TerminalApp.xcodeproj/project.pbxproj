@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1887F6EE19261119001AF36F /* AppLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1887F6ED19261119001AF36F /* AppLogic.m */; };
+		1887F6F019261739001AF36F /* MMTerminalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1887F6EF19261739001AF36F /* MMTerminalCell.xib */; };
 		18EEB9841923C2530038AA4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9831923C2530038AA4D /* Foundation.framework */; };
 		18EEB9861923C2530038AA4D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9851923C2530038AA4D /* CoreGraphics.framework */; };
 		18EEB9881923C2530038AA4D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9871923C2530038AA4D /* UIKit.framework */; };
@@ -14,7 +16,7 @@
 		18EEB9901923C2530038AA4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EEB98F1923C2530038AA4D /* main.m */; };
 		18EEB9941923C2530038AA4D /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EEB9931923C2530038AA4D /* MMAppDelegate.m */; };
 		18EEB9971923C2530038AA4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EEB9951923C2530038AA4D /* Main.storyboard */; };
-		18EEB99A1923C2530038AA4D /* MMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EEB9991923C2530038AA4D /* MMViewController.m */; };
+		18EEB99A1923C2530038AA4D /* MMTerminalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EEB9991923C2530038AA4D /* MMTerminalViewController.m */; };
 		18EEB99C1923C2530038AA4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EEB99B1923C2530038AA4D /* Images.xcassets */; };
 		18EEB9A31923C2530038AA4D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9A21923C2530038AA4D /* XCTest.framework */; };
 		18EEB9A41923C2530038AA4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9831923C2530038AA4D /* Foundation.framework */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1887F6E81925FCF3001AF36F /* MMTerminalDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMTerminalDelegate.h; sourceTree = "<group>"; };
+		1887F6EC19261119001AF36F /* AppLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLogic.h; sourceTree = "<group>"; };
+		1887F6ED19261119001AF36F /* AppLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLogic.m; sourceTree = "<group>"; };
+		1887F6EF19261739001AF36F /* MMTerminalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMTerminalCell.xib; sourceTree = "<group>"; };
 		18EEB9801923C2530038AA4D /* TerminalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EEB9831923C2530038AA4D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		18EEB9851923C2530038AA4D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,8 +51,8 @@
 		18EEB9921923C2530038AA4D /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		18EEB9931923C2530038AA4D /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		18EEB9961923C2530038AA4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18EEB9981923C2530038AA4D /* MMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMViewController.h; sourceTree = "<group>"; };
-		18EEB9991923C2530038AA4D /* MMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMViewController.m; sourceTree = "<group>"; };
+		18EEB9981923C2530038AA4D /* MMTerminalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMTerminalViewController.h; sourceTree = "<group>"; };
+		18EEB9991923C2530038AA4D /* MMTerminalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMTerminalViewController.m; sourceTree = "<group>"; };
 		18EEB99B1923C2530038AA4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18EEB9A11923C2530038AA4D /* TerminalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerminalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EEB9A21923C2530038AA4D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -115,10 +121,14 @@
 				18EEB9921923C2530038AA4D /* MMAppDelegate.h */,
 				18EEB9931923C2530038AA4D /* MMAppDelegate.m */,
 				18EEB9951923C2530038AA4D /* Main.storyboard */,
-				18EEB9981923C2530038AA4D /* MMViewController.h */,
-				18EEB9991923C2530038AA4D /* MMViewController.m */,
+				18EEB9981923C2530038AA4D /* MMTerminalViewController.h */,
+				18EEB9991923C2530038AA4D /* MMTerminalViewController.m */,
 				18EEB99B1923C2530038AA4D /* Images.xcassets */,
 				18EEB98A1923C2530038AA4D /* Supporting Files */,
+				1887F6E81925FCF3001AF36F /* MMTerminalDelegate.h */,
+				1887F6EC19261119001AF36F /* AppLogic.h */,
+				1887F6ED19261119001AF36F /* AppLogic.m */,
+				1887F6EF19261739001AF36F /* MMTerminalCell.xib */,
 			);
 			path = TerminalApp;
 			sourceTree = "<group>";
@@ -230,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EEB99C1923C2530038AA4D /* Images.xcassets in Resources */,
+				1887F6F019261739001AF36F /* MMTerminalCell.xib in Resources */,
 				18EEB98E1923C2530038AA4D /* InfoPlist.strings in Resources */,
 				18EEB9971923C2530038AA4D /* Main.storyboard in Resources */,
 			);
@@ -250,8 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1887F6EE19261119001AF36F /* AppLogic.m in Sources */,
 				18EEB9941923C2530038AA4D /* MMAppDelegate.m in Sources */,
-				18EEB99A1923C2530038AA4D /* MMViewController.m in Sources */,
+				18EEB99A1923C2530038AA4D /* MMTerminalViewController.m in Sources */,
 				18EEB9901923C2530038AA4D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +473,7 @@
 				18EEB9B41923C2530038AA4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18EEB9B51923C2530038AA4D /* Build configuration list for PBXNativeTarget "TerminalAppTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +482,7 @@
 				18EEB9B71923C2530038AA4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

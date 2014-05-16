@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Command" rowHeight="40" id="0Dh-YS-sdx" customClass="MMTerminalCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Dh-YS-sdx" id="pLE-7C-RnW">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" text=">>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugK-tP-LZF">
+                        <rect key="frame" x="5" y="3" width="310" height="12"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="238" text="input" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="x44-ty-rBJ">
+                        <rect key="frame" x="5" y="18" width="310" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="x44-ty-rBJ" firstAttribute="leading" secondItem="pLE-7C-RnW" secondAttribute="leading" constant="5" id="1eF-2j-2HL"/>
+                    <constraint firstAttribute="trailing" secondItem="x44-ty-rBJ" secondAttribute="trailing" constant="5" id="2s1-aK-Tc4"/>
+                    <constraint firstItem="ugK-tP-LZF" firstAttribute="leading" secondItem="pLE-7C-RnW" secondAttribute="leading" constant="5" id="9W8-Tb-7EL"/>
+                    <constraint firstItem="ugK-tP-LZF" firstAttribute="top" secondItem="pLE-7C-RnW" secondAttribute="top" constant="3" id="CdC-il-ZJd"/>
+                    <constraint firstAttribute="bottom" secondItem="x44-ty-rBJ" secondAttribute="bottom" constant="6" id="EtP-cI-Ezw"/>
+                    <constraint firstItem="x44-ty-rBJ" firstAttribute="top" secondItem="ugK-tP-LZF" secondAttribute="bottom" constant="3" id="LHP-wN-J2T"/>
+                    <constraint firstAttribute="trailing" secondItem="ugK-tP-LZF" secondAttribute="trailing" constant="5" id="a3v-lL-rV7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="labelIndicator" destination="ugK-tP-LZF" id="0gJ-cS-yIH"/>
+                <outlet property="labelText" destination="x44-ty-rBJ" id="lhc-fz-yX1"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
