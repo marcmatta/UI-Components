@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1873DAEA192A017D006A526D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1873DAE9192A017D006A526D /* CoreData.framework */; };
+		1873DAED192A0204006A526D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAEB192A0204006A526D /* Model.xcdatamodeld */; };
+		1873DAF0192A036C006A526D /* UserVenueTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAEF192A036C006A526D /* UserVenueTuple.m */; };
+		1873DAF3192A0423006A526D /* AppCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAF2192A0423006A526D /* AppCoreData.m */; };
+		1873DB00192A0ED3006A526D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAF6192A0ED3006A526D /* FMDatabase.m */; };
+		1873DB01192A0ED3006A526D /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAF8192A0ED3006A526D /* FMDatabaseAdditions.m */; };
+		1873DB02192A0ED3006A526D /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAFA192A0ED3006A526D /* FMDatabasePool.m */; };
+		1873DB03192A0ED3006A526D /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAFC192A0ED3006A526D /* FMDatabaseQueue.m */; };
+		1873DB04192A0ED3006A526D /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1873DAFF192A0ED3006A526D /* FMResultSet.m */; };
+		1873DB06192A107B006A526D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1873DB05192A107B006A526D /* libsqlite3.0.dylib */; };
 		1887F6EE19261119001AF36F /* AppLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 1887F6ED19261119001AF36F /* AppLogic.m */; };
 		1887F6F019261739001AF36F /* MMTerminalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1887F6EF19261739001AF36F /* MMTerminalCell.xib */; };
 		18EEB9841923C2530038AA4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EEB9831923C2530038AA4D /* Foundation.framework */; };
@@ -36,6 +46,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1873DAE9192A017D006A526D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1873DAEC192A0204006A526D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		1873DAEE192A036C006A526D /* UserVenueTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserVenueTuple.h; sourceTree = "<group>"; };
+		1873DAEF192A036C006A526D /* UserVenueTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserVenueTuple.m; sourceTree = "<group>"; };
+		1873DAF1192A0423006A526D /* AppCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoreData.h; sourceTree = "<group>"; };
+		1873DAF2192A0423006A526D /* AppCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppCoreData.m; sourceTree = "<group>"; };
+		1873DAF5192A0ED3006A526D /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		1873DAF6192A0ED3006A526D /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		1873DAF7192A0ED3006A526D /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		1873DAF8192A0ED3006A526D /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		1873DAF9192A0ED3006A526D /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		1873DAFA192A0ED3006A526D /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		1873DAFB192A0ED3006A526D /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		1873DAFC192A0ED3006A526D /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		1873DAFD192A0ED3006A526D /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		1873DAFE192A0ED3006A526D /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		1873DAFF192A0ED3006A526D /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		1873DB05192A107B006A526D /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		1887F6E81925FCF3001AF36F /* MMTerminalDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMTerminalDelegate.h; sourceTree = "<group>"; };
 		1887F6EC19261119001AF36F /* AppLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppLogic.h; sourceTree = "<group>"; };
 		1887F6ED19261119001AF36F /* AppLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppLogic.m; sourceTree = "<group>"; };
@@ -66,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1873DB06192A107B006A526D /* libsqlite3.0.dylib in Frameworks */,
+				1873DAEA192A017D006A526D /* CoreData.framework in Frameworks */,
 				18EEB9861923C2530038AA4D /* CoreGraphics.framework in Frameworks */,
 				18EEB9881923C2530038AA4D /* UIKit.framework in Frameworks */,
 				18EEB9841923C2530038AA4D /* Foundation.framework in Frameworks */,
@@ -85,9 +115,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1873DAF4192A0ED3006A526D /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				1873DAF5192A0ED3006A526D /* FMDatabase.h */,
+				1873DAF6192A0ED3006A526D /* FMDatabase.m */,
+				1873DAF7192A0ED3006A526D /* FMDatabaseAdditions.h */,
+				1873DAF8192A0ED3006A526D /* FMDatabaseAdditions.m */,
+				1873DAF9192A0ED3006A526D /* FMDatabasePool.h */,
+				1873DAFA192A0ED3006A526D /* FMDatabasePool.m */,
+				1873DAFB192A0ED3006A526D /* FMDatabaseQueue.h */,
+				1873DAFC192A0ED3006A526D /* FMDatabaseQueue.m */,
+				1873DAFD192A0ED3006A526D /* FMDB.h */,
+				1873DAFE192A0ED3006A526D /* FMResultSet.h */,
+				1873DAFF192A0ED3006A526D /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		18EEB9771923C2530038AA4D = {
 			isa = PBXGroup;
 			children = (
+				1873DAF4192A0ED3006A526D /* fmdb */,
 				18EEB9891923C2530038AA4D /* TerminalApp */,
 				18EEB9A81923C2530038AA4D /* TerminalAppTests */,
 				18EEB9821923C2530038AA4D /* Frameworks */,
@@ -107,6 +156,8 @@
 		18EEB9821923C2530038AA4D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1873DB05192A107B006A526D /* libsqlite3.0.dylib */,
+				1873DAE9192A017D006A526D /* CoreData.framework */,
 				18EEB9831923C2530038AA4D /* Foundation.framework */,
 				18EEB9851923C2530038AA4D /* CoreGraphics.framework */,
 				18EEB9871923C2530038AA4D /* UIKit.framework */,
@@ -129,6 +180,11 @@
 				1887F6EC19261119001AF36F /* AppLogic.h */,
 				1887F6ED19261119001AF36F /* AppLogic.m */,
 				1887F6EF19261739001AF36F /* MMTerminalCell.xib */,
+				1873DAEB192A0204006A526D /* Model.xcdatamodeld */,
+				1873DAEE192A036C006A526D /* UserVenueTuple.h */,
+				1873DAEF192A036C006A526D /* UserVenueTuple.m */,
+				1873DAF1192A0423006A526D /* AppCoreData.h */,
+				1873DAF2192A0423006A526D /* AppCoreData.m */,
 			);
 			path = TerminalApp;
 			sourceTree = "<group>";
@@ -263,8 +319,16 @@
 			files = (
 				1887F6EE19261119001AF36F /* AppLogic.m in Sources */,
 				18EEB9941923C2530038AA4D /* MMAppDelegate.m in Sources */,
+				1873DAED192A0204006A526D /* Model.xcdatamodeld in Sources */,
+				1873DAF3192A0423006A526D /* AppCoreData.m in Sources */,
 				18EEB99A1923C2530038AA4D /* MMTerminalViewController.m in Sources */,
+				1873DB01192A0ED3006A526D /* FMDatabaseAdditions.m in Sources */,
+				1873DB04192A0ED3006A526D /* FMResultSet.m in Sources */,
 				18EEB9901923C2530038AA4D /* main.m in Sources */,
+				1873DB02192A0ED3006A526D /* FMDatabasePool.m in Sources */,
+				1873DB03192A0ED3006A526D /* FMDatabaseQueue.m in Sources */,
+				1873DAF0192A036C006A526D /* UserVenueTuple.m in Sources */,
+				1873DB00192A0ED3006A526D /* FMDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +549,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1873DAEB192A0204006A526D /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1873DAEC192A0204006A526D /* Model.xcdatamodel */,
+			);
+			currentVersion = 1873DAEC192A0204006A526D /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18EEB9781923C2530038AA4D /* Project object */;
 }

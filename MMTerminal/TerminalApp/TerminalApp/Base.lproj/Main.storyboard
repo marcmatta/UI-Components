@@ -25,7 +25,7 @@
                                     <outlet property="delegate" destination="wj4-Wn-8GF" id="kLR-E2-Mbo"/>
                                 </connections>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="a skdjaksdlaksdlkna" translatesAutoresizingMaskIntoConstraints="NO" id="aop-lT-BCt">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aop-lT-BCt">
                                 <rect key="frame" x="0.0" y="535" width="320" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

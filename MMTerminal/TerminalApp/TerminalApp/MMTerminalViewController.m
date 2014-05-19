@@ -77,6 +77,8 @@ static MMTerminalCell *SizingCell;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Initialize the App Logic Controller
+    [self.commands addObject:[MMTerminalOutput outputWithString:[self.delegate commandOutput:nil]]];
     self.internalTextView.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName:@"MMTerminalCell" bundle:Nil] forCellReuseIdentifier:@"Command"];
 }
