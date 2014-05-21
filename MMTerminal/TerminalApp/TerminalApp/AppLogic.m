@@ -19,9 +19,11 @@
 @end
 
 @implementation AppLogic
+static NSString *const MaximumNumberOfVenuesString = @"Enter The number of maximum Venues";
 static NSString *const NANString = @"The value you have entered is NAN or not in range. Please choose one from [1-9]";
 static NSString *const InvalidTupleErrorString = @"Invalid Venue Index - UserIndex Tuple. E.g. 0 1";
-static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
+static NSString *const TupleAlreadyAvailableString = @"Please choose another tuple";
+static NSString *const MaximumNumberOfCheckinsString = @"Enter The Number of Maximum Check-ins";
 
 - (instancetype)init
 {
@@ -78,11 +80,9 @@ static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
 {
     switch (_step) {
         case -1:
-        {
             self.step ++;
-        }
-            return @"Enter The number of maximum Venues";
-            break;
+        
+            return MaximumNumberOfVenuesString;
         case 0:
         {
             NSNumber *numberOfMaximumVenues = [self.formatter numberFromString:command];
@@ -90,11 +90,10 @@ static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
             {
                 self.numberOfMaximumVenues = [numberOfMaximumVenues integerValue];
                 self.step ++;
-                return @"Enter The Number of Maximum Check-ins";
+                return MaximumNumberOfCheckinsString;
             }else
                 return NANString;
         }
-            break;
         case 1:
         {
             NSNumber *numberOfMaximumCheckIns = [self.formatter numberFromString:command];
@@ -106,7 +105,6 @@ static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
             }else
                 return NANString;
         }
-            break;
         case 2:
         {
             NSArray *tuple = [command componentsSeparatedByString:@" "];
@@ -123,7 +121,7 @@ static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"venueId = %@ AND userId = %@", venueIndex, userIndex];
                     NSArray *similarCheckIns = [self.checkIns filteredArrayUsingPredicate:predicate];
                     if (similarCheckIns.count > 0)
-                        return TupleAlreadyAvailable;
+                        return TupleAlreadyAvailableString;
                     else{
                         [self.checkIns addObject:[UserVenueTuple tupleWithVenueIndex:venueIndex userIndex:userIndex]];
                         if (self.checkIns.count == self.numberOfMaximumCheckIns){
@@ -137,9 +135,7 @@ static NSString *const TupleAlreadyAvailable = @"Please choose another tuple";
                 }
             }
         }
-            break;
-        default:break;
+        default:return nil;
     }
-    return @"test";
 }
 @end
