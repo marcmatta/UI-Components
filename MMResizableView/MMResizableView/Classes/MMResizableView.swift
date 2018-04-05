@@ -23,8 +23,56 @@ class MMResizableView: UIView {
         }
     }
     
+    @IBOutlet weak var contentView : UIView? {
+        didSet {
+            repositionContentView()
+        }
+    }
+    
+    func repositionContentView() {
+        guard let equality = contentView?.superview?.isEqual(self), equality == true else {
+            return
+        }
+        
+        contentView?.frame = self.bounds.insetBy(dx: borderInset, dy: borderInset)
+    }
+    
+    override var transform: CGAffineTransform {
+        didSet {
+            guard let superview = superview else {
+                return
+            }
+            
+            var newX = self.frame.origin.x
+            var newW = self.frame.size.width
+            var newY = self.frame.origin.y
+            var newH = self.frame.size.height
+            
+            if self.frame.size.width > superview.bounds.maxX {
+                newX = superview.bounds.minX
+                newW = superview.bounds.maxX
+            }else if self.frame.origin.x < superview.bounds.minX {
+                newX = superview.bounds.minX
+            }else if self.frame.size.width + self.frame.origin.x > superview.bounds.maxX {
+                newX = superview.bounds.maxX - self.frame.size.width
+            }
+            
+            if self.frame.size.height > superview.bounds.maxY {
+                newY = superview.bounds.minY
+                newH = superview.bounds.maxY
+            }else if self.frame.origin.y < superview.bounds.minY {
+                newY = superview.bounds.minY
+            }else if self.frame.size.height + self.frame.origin.y > superview.bounds.maxY {
+                newY = superview.bounds.maxY - self.frame.size.height
+            }
+            
+            self.frame = CGRect(x: newX, y: newY, width: newW, height: newH)
+        }
+    }
+    
     public var borderInset : CGFloat = 10.0 {
         didSet {
+            repositionContentView()
             self.setNeedsDisplay()
         }
     }
@@ -166,30 +214,8 @@ class MMResizableView: UIView {
             return
         }
 
-        var newLocation = newLocation
-//        var lockX : Bool = false
-//        var lockY : Bool = false
-//
-//        if newLocation.x - borderInset < superview.bounds.minX {
-//            newLocation.x = superview.bounds.minX + borderInset
-//            lockX = true
-//        }
-//
-//        if newLocation.y - borderInset < superview.bounds.minY {
-//            newLocation.y = superview.bounds.minY + borderInset
-//            lockY = true
-//        }
-//
-//        if newLocation.x + borderInset > superview.bounds.maxX  {
-//            newLocation.x = superview.bounds.maxX - borderInset
-//            lockX = true
-//        }
-//
-//        if newLocation.y + borderInset > superview.bounds.maxY{
-//            newLocation.y = superview.bounds.maxY - borderInset
-//            lockY = true
-//        }
-//
+        let newLocation = newLocation
+        
         var newX : CGFloat = self.frame.origin.x
         var newY : CGFloat = self.frame.origin.y
         var newW : CGFloat = self.frame.size.width
