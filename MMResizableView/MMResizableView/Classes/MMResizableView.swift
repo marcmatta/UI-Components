@@ -167,23 +167,29 @@ class MMResizableView: UIView {
         }
 
         var newLocation = newLocation
-
-        if newLocation.x - borderInset < superview.bounds.minX {
-            newLocation.x = superview.bounds.minX + borderInset
-        }
-        
-        if newLocation.y - borderInset < superview.bounds.minY {
-            newLocation.y = superview.bounds.minY + borderInset
-        }
-
-        if newLocation.x + borderInset > superview.bounds.maxX  {
-            newLocation.x = superview.bounds.maxX - borderInset
-        }
-        
-        if newLocation.y + borderInset > superview.bounds.maxY{
-            newLocation.y = superview.bounds.maxY - borderInset
-        }
-        
+//        var lockX : Bool = false
+//        var lockY : Bool = false
+//
+//        if newLocation.x - borderInset < superview.bounds.minX {
+//            newLocation.x = superview.bounds.minX + borderInset
+//            lockX = true
+//        }
+//
+//        if newLocation.y - borderInset < superview.bounds.minY {
+//            newLocation.y = superview.bounds.minY + borderInset
+//            lockY = true
+//        }
+//
+//        if newLocation.x + borderInset > superview.bounds.maxX  {
+//            newLocation.x = superview.bounds.maxX - borderInset
+//            lockX = true
+//        }
+//
+//        if newLocation.y + borderInset > superview.bounds.maxY{
+//            newLocation.y = superview.bounds.maxY - borderInset
+//            lockY = true
+//        }
+//
         var newX : CGFloat = self.frame.origin.x
         var newY : CGFloat = self.frame.origin.y
         var newW : CGFloat = self.frame.size.width
@@ -200,6 +206,11 @@ class MMResizableView: UIView {
                 newY = self.frame.origin.y + deltaY
                 newH = self.frame.size.height - deltaY
             }
+            
+            if newY < superview.bounds.minY {
+                newY = self.frame.origin.y
+                newH = self.frame.size.height
+            }
         }
         
         if handleSelection.contains(.left) {
@@ -210,6 +221,12 @@ class MMResizableView: UIView {
                 newX = self.frame.origin.x + deltaX
                 newW = self.frame.size.width - deltaX
             }
+            
+            if newX < superview.bounds.minX {
+                newX = self.frame.origin.x
+                newW = self.frame.size.width
+            }
+            
         }
         
         if handleSelection.contains(.lower) {
@@ -218,6 +235,11 @@ class MMResizableView: UIView {
             }else {
                 newH = self.frame.size.height + deltaY
             }
+            
+            if newY + newH > superview.bounds.maxY {
+                newH = superview.bounds.maxY - newY
+            }
+
         }
         
         if handleSelection.contains(.right) {
@@ -226,6 +248,11 @@ class MMResizableView: UIView {
             }else {
                 newW = self.frame.size.width + deltaX
             }
+            
+            if newX + newW > superview.bounds.maxX {
+                newW = superview.bounds.maxX - newX
+            }
+
         }
         
         self.frame = CGRect(x: newX, y: newY, width: newW, height: newH)
