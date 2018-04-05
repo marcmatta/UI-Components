@@ -14,7 +14,13 @@ fileprivate enum DragHandleSelection {
     case left
 }
 
+protocol MMResizableViewDelegate {
+    func didUpdate(resizableView: MMResizableView)
+}
+
 class MMResizableView: UIView {
+    public var delegate: MMResizableViewDelegate?
+    
     public var minHeight : CGFloat = 48.0
     public var minWidth : CGFloat = 48.0
     public var showBorders : Bool = true {
@@ -35,6 +41,18 @@ class MMResizableView: UIView {
         }
         
         contentView?.frame = self.bounds.insetBy(dx: borderInset, dy: borderInset)
+    }
+    
+    override var frame: CGRect {
+        didSet {
+            self.delegate?.didUpdate(resizableView: self)
+        }
+    }
+    
+    override var center: CGPoint {
+        didSet {
+            self.delegate?.didUpdate(resizableView: self)
+        }
     }
     
     override var transform: CGAffineTransform {
@@ -95,7 +113,7 @@ class MMResizableView: UIView {
     private var handleSelection : [DragHandleSelection] = []
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let superview = self.superview, let touch = touches.first else {
+        guard let superview = self.superview, let touch = touches.first, showBorders else {
             return
         }
         
@@ -159,7 +177,7 @@ class MMResizableView: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let superview = self.superview, let touch = touches.first else {
+        guard let superview = self.superview, let touch = touches.first, showBorders else {
             return
         }
         

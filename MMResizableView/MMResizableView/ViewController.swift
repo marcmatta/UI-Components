@@ -9,16 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var resizableView : UIView!
+    @IBOutlet weak var resizableView : MMResizableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.resizableView.delegate = self
     }
     
     var rotated : Bool = false
@@ -34,3 +29,8 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController : MMResizableViewDelegate {
+    func didUpdate(resizableView: MMResizableView) {
+        print(resizableView.frame)
+    }
+}
