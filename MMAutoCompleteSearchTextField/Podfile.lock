@@ -1,0 +1,10 @@
+PODS:
+  - StringScore (0.0.1)
+
+DEPENDENCIES:
+  - StringScore
+
+SPEC CHECKSUMS:
+  StringScore: d24dc39418510112c0cb065d86615ae85ef2fd2b
+
+COCOAPODS: 0.32.1
