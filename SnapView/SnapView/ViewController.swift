@@ -26,12 +26,26 @@ class TextContentView: SnappableView<TextElement>, UITextFieldDelegate {
     
     override init(item: TextElement) {
         super.init(item: item)
+        textField.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        textField.text = item.value
+        textField.placeholder = item.emptyValue
+        
         self.addSubview(textField)
-        self.backgroundColor = UIColor.random
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textChanged(notification:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        resize()
     }
     
     override func setSelected(selected: Bool) {
@@ -42,6 +56,21 @@ class TextContentView: SnappableView<TextElement>, UITextFieldDelegate {
             textField.isUserInteractionEnabled = false
         }
         super.setSelected(selected: selected)
+    }
+    
+    @objc func textChanged(notification: Notification) {
+        resize()
+        item.value = textField.text
+    }
+    
+    func resize() {
+        guard let superSnapper = superview as? SnapView else {
+            return
+        }
+        
+        let size = self.textField.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let newFrame = CGRect(origin: self.frame.origin, size: size)
+        superSnapper.changeFrame(forView: self, usingRect: newFrame)
     }
 }
 
@@ -56,6 +85,10 @@ class TextElement : SnappableItem {
     
     var height: CGFloat = 30
     
+    var value: String? = ""
+    
+    var emptyValue: String? = "[Text]"
+    
     var contentView: UIView {
         get {
             return TextContentView(item: self)
@@ -68,6 +101,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        snapView.minimumWidth = 44
+        snapView.minimumHeight = 44
         
         snapView.items = [TextElement(), TextElement()]
     }

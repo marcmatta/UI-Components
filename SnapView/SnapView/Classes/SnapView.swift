@@ -121,6 +121,12 @@ class SnapView: UIView {
         }
     }
     
+    /// minimum width
+    public var minimumWidth : CGFloat?
+    
+    /// minimum height
+    public var minimumHeight : CGFloat?
+    
     /// how near should the selected view move to start showing guides
     public var threshold:CGFloat = 10.0
     
@@ -129,6 +135,12 @@ class SnapView: UIView {
     
     /// minimum spacing distance to start snapping vertically
     public var snapY : CGFloat = 5.0
+    
+    override var frame: CGRect {
+        didSet {
+            
+        }
+    }
     
     // MARK: - Lifecycle
     required init?(coder aDecoder: NSCoder) {
@@ -166,10 +178,11 @@ class SnapView: UIView {
         switch rec.state {
         case .ended:
             let p: CGPoint = rec.location(in: self)
-            if let view = self.hitTest(p, with: nil), view != self {
+            let view = self.hitTest(p, with: nil)
+            if view != nil && view != self {
                 self.selectedView = view
                 DispatchQueue.main.async {
-                    self.bringSubview(toFront: view)
+                    self.bringSubview(toFront: view!)
                     self.subviews.forEach({ (v) in
                         if v != view {
                             v.layer.zPosition = 0
@@ -178,7 +191,7 @@ class SnapView: UIView {
                         }
                     })
                 }
-            }else {
+            }else if view == self{
                 self.selectedView = nil
             }
         default:
@@ -312,19 +325,20 @@ class SnapView: UIView {
             if view == nil || view!.isUserInteractionEnabled || subviews.contains(view!) {
                 return view
             }
-        }
-        
-        guard isUserInteractionEnabled, !isHidden, alpha > 0 else {
-            return nil
-        }
-        
-        for subview in subviews.reversed() {
-            if subview.frame.contains(point) {
-                return subview
+            
+            guard isUserInteractionEnabled, !isHidden, alpha > 0 else {
+                return nil
             }
+            
+            for subview in subviews.reversed() {
+                if subview.frame.contains(point) {
+                    return subview
+                }
+            }
+            return self
         }
         
-        return self
+        return nil
     }
     
     override internal func draw(_ rect: CGRect) {
@@ -365,16 +379,16 @@ class SnapView: UIView {
         }
     }
     
-    private func boundedFrame(forView view: UIView) -> CGRect {
+    private func boundedFrame(usingRect rect: CGRect) -> CGRect {
         // Get reference bounds.
         let referenceBounds = self.bounds
         let referenceWidth = referenceBounds.width
         let referenceHeight = referenceBounds.height
         
         // Get item bounds.
-        var itemBounds = view.frame
-        var width = view.frame.width
-        var height = view.frame.height
+        var itemBounds = rect
+        var width = minimumWidth != nil ? max(itemBounds.width, minimumWidth!) : itemBounds.width
+        var height = minimumHeight != nil ? max(itemBounds.height, minimumHeight!) : itemBounds.height
         
         if itemBounds.width > referenceBounds.width {
             width = referenceBounds.width
@@ -390,13 +404,17 @@ class SnapView: UIView {
         let itemHalfHeight = itemBounds.height / 2.0
         
         // bound the view inside the reference
-        var location = view.center
+        var location = itemBounds.offsetBy(dx: itemHalfWidth, dy: itemHalfHeight).origin
         location.x = max(itemHalfWidth, location.x)
         location.x = min(referenceWidth - itemHalfWidth, location.x)
         location.y = max(itemHalfHeight, location.y)
         location.y = min(referenceHeight - itemHalfHeight, location.y)
         
         return CGRect(origin: CGPoint(x: location.x - itemHalfWidth, y: location.y - itemHalfHeight), size: itemBounds.size)
+    }
+    
+    private func boundedFrame(forView view: UIView) -> CGRect {
+        return boundedFrame(usingRect: view.frame)
     }
     
     // MARK: - Public
@@ -409,9 +427,18 @@ class SnapView: UIView {
     
     public func viewRotation() -> CGFloat? {
         if let view = selectedView {
-            return CGFloat(atan2f(Float(view.transform.b), Float(view.transform.a)).toDegrees)
+            return rotation(forView: view)
         }
         
         return nil
+    }
+    
+    public func rotation(forView view: UIView) -> CGFloat {
+        return CGFloat(atan2f(Float(view.transform.b), Float(view.transform.a)).toDegrees)
+    }
+    
+    public func changeFrame(forView view: UIView, usingRect rect: CGRect) {
+        let transformedRect = rect.applying(CGAffineTransform.identity.rotated(by: rotation(forView: view).toRadians))
+        view.frame = boundedFrame(usingRect: CGRect(origin: rect.origin, size: transformedRect.size))
     }
 }
