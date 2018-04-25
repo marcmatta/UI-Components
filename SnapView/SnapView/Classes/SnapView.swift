@@ -244,6 +244,9 @@ class SnapView: UIView {
                 guidesX.removeAll()
                 guidesY.removeAll()
                 
+                guidesX.append(contentsOf: [5, self.bounds.width / 2, self.bounds.width - 5])
+                guidesY.append(contentsOf: [5, self.bounds.height / 2, self.bounds.height - 5])
+                
                 self.subviews.filter{$0 != self.selectedView}.forEach { (view) in
                     if (view.frame.minX - self.selectedView.frame.minX < threshold) ||
                         (view.frame.minX - self.selectedView.frame.maxX < threshold){
