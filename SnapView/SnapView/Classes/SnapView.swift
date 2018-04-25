@@ -8,14 +8,34 @@
 
 import UIKit
 
-protocol SnappableView: NSObjectProtocol {
+extension FloatingPoint {
+    var toRadians: Self { return self * .pi / 180 }
+    var toDegrees: Self { return self * 180 / .pi }
+}
+
+protocol Snappable: NSObjectProtocol {
+    var isSelected : Bool {get set}
     func setSelected(selected: Bool)
 }
 
-extension UIView : SnappableView {
+class SnappableView<T: SnappableItem> : UIView, Snappable {
+    var item: T
+    var isSelected: Bool = false
+    
+    init(item: T) {
+        self.item = item
+        super.init(frame: CGRect(x: item.x, y: item.y, width: item.width, height: item.height))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func setSelected(selected: Bool) {
+        self.isSelected = selected
+        
         if !selected {
-            self.resignFirstResponder()
+            self.resignAllResponders()
         }
         
         self.layer.borderColor = selected ? UIColor.blue.cgColor : UIColor.clear.cgColor
@@ -23,50 +43,92 @@ extension UIView : SnappableView {
     }
 }
 
+extension UIView {
+    func resignAllResponders() {
+        self.subviews.forEach {
+            $0.resignFirstResponder()
+            $0.resignAllResponders()
+        }
+    }
+    
+    func contains(subview: UIView) -> Bool{
+        for view in self.subviews {
+            if view == subview || view.contains(subview: subview){
+                return true
+            }
+        }
+        
+        return false
+    }
+}
+
+protocol SnappableItem {
+    var x: CGFloat {get set}
+    var y: CGFloat {get set}
+    var width: CGFloat {get set}
+    var height: CGFloat {get set}
+    
+    var contentView: UIView {get}
+}
+
 class SnapView: UIView {
     /// gesture used to pan views
-    var panGesture: UIPanGestureRecognizer!
+    private var panGesture: UIPanGestureRecognizer!
     
     /// gesture used to select view before panning
-    var tapGesture: UITapGestureRecognizer!
+    private var tapGesture: UITapGestureRecognizer!
     
     /// translation offset from point of touch to center of selected view
-    var offset = CGPoint.zero
+    private var offset = CGPoint.zero
+    
+    /// should not drag if not selected
+    private var shouldPan = false
+    
+    /// vertical snapping guides
+    private var guidesX : [CGFloat] = []
+    
+    /// horizontal snapping guides
+    private var guidesY : [CGFloat] = []
+    
+    /// items to draw
+    public var items : [SnappableItem] = [] {
+        didSet {
+            self.subviews.forEach{$0.removeFromSuperview()}
+            
+            items.forEach { (item) in
+                let content = item.contentView
+                content.frame = boundedFrame(forView: content)
+                self.addSubview(content)
+            }
+        }
+    }
     
     /// the guy we're dragging
-    var selectedView: UIView! {
+    public var selectedView: UIView! {
         didSet {
-            if let oldView = oldValue {
+            if let oldView = oldValue as? Snappable, oldValue != selectedView {
                 oldView.setSelected(selected: false)
             }
             
-            if let view = selectedView {
+            if let view = selectedView as? Snappable{
                 view.setSelected(selected: true)
                 
                 self.panGesture.isEnabled = true
             }else {
                 self.panGesture.isEnabled = false
+                resignAllResponders()
             }
         }
     }
     
     /// how near should the selected view move to start showing guides
-    var threshold:CGFloat = 10.0
-    
-    /// should not drag if not selected
-    var shouldPan = false
+    public var threshold:CGFloat = 10.0
     
     /// minimum spacing distance to start snapping horizontally
-    var snapX : CGFloat = 5.0
+    public var snapX : CGFloat = 5.0
     
     /// minimum spacing distance to start snapping vertically
-    var snapY : CGFloat = 5.0
-    
-    /// vertical snapping guides
-    var guidesX : [CGFloat] = [20]
-    
-    /// horizontal snapping guides
-    var guidesY : [CGFloat] = [20]
+    public var snapY : CGFloat = 5.0
     
     // MARK: - Lifecycle
     required init?(coder aDecoder: NSCoder) {
@@ -100,7 +162,7 @@ class SnapView: UIView {
     
     // MARK: Gesture Callbacks
 
-    @objc func tap(rec:UITapGestureRecognizer) {
+    @objc private func tap(rec:UITapGestureRecognizer) {
         switch rec.state {
         case .ended:
             let p: CGPoint = rec.location(in: self)
@@ -124,7 +186,7 @@ class SnapView: UIView {
         }
     }
     
-    @objc func pan(_ pan: UIPanGestureRecognizer) {
+    @objc private func pan(_ pan: UIPanGestureRecognizer) {
         var location = pan.location(in: self)
         
         switch pan.state {
@@ -132,7 +194,7 @@ class SnapView: UIView {
             shouldPan = true
             
             let p = pan.location(in: self)
-            if self.hitTest(p, with: nil) != self.selectedView {
+            if let touchedView = self.hitTest(p, with: nil), touchedView != self.selectedView && !self.selectedView.contains(subview: touchedView) {
                 shouldPan = false
             }
             
@@ -151,7 +213,7 @@ class SnapView: UIView {
                 let referenceHeight = referenceBounds.height
                 
                 // Get item bounds.
-                let itemBounds = self.selectedView.bounds
+                let itemBounds = self.selectedView.frame
                 let itemHalfWidth = itemBounds.width / 2.0
                 let itemHalfHeight = itemBounds.height / 2.0
                 
@@ -243,9 +305,13 @@ class SnapView: UIView {
     }
     
     // MARK: Override points
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override internal func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if self.point(inside: point, with: event) {
-            return super.hitTest(point, with: event)
+            
+            let view = super.hitTest(point, with: event)
+            if view == nil || view!.isUserInteractionEnabled || subviews.contains(view!) {
+                return view
+            }
         }
         
         guard isUserInteractionEnabled, !isHidden, alpha > 0 else {
@@ -253,15 +319,15 @@ class SnapView: UIView {
         }
         
         for subview in subviews.reversed() {
-            let convertedPoint = subview.convert(point, from: self)
-            if let hitView = subview.hitTest(convertedPoint, with: event) {
-                return hitView
+            if subview.frame.contains(point) {
+                return subview
             }
         }
-        return nil
+        
+        return self
     }
     
-    override func draw(_ rect: CGRect) {
+    override internal func draw(_ rect: CGRect) {
         super.draw(rect)
         
         guard shouldPan, let view = selectedView, let context = UIGraphicsGetCurrentContext() else {
@@ -297,5 +363,55 @@ class SnapView: UIView {
                 context.closePath()
             }
         }
+    }
+    
+    private func boundedFrame(forView view: UIView) -> CGRect {
+        // Get reference bounds.
+        let referenceBounds = self.bounds
+        let referenceWidth = referenceBounds.width
+        let referenceHeight = referenceBounds.height
+        
+        // Get item bounds.
+        var itemBounds = view.frame
+        var width = view.frame.width
+        var height = view.frame.height
+        
+        if itemBounds.width > referenceBounds.width {
+            width = referenceBounds.width
+        }
+        
+        if itemBounds.height > referenceBounds.height {
+            height = referenceBounds.height
+        }
+        
+        itemBounds = CGRect(origin: itemBounds.origin, size: CGSize(width: width, height: height))
+        
+        let itemHalfWidth = itemBounds.width / 2.0
+        let itemHalfHeight = itemBounds.height / 2.0
+        
+        // bound the view inside the reference
+        var location = view.center
+        location.x = max(itemHalfWidth, location.x)
+        location.x = min(referenceWidth - itemHalfWidth, location.x)
+        location.y = max(itemHalfHeight, location.y)
+        location.y = min(referenceHeight - itemHalfHeight, location.y)
+        
+        return CGRect(origin: CGPoint(x: location.x - itemHalfWidth, y: location.y - itemHalfHeight), size: itemBounds.size)
+    }
+    
+    // MARK: - Public
+    public func rotate(degrees: CGFloat) {
+        if let view = self.selectedView {
+            view.transform = CGAffineTransform.identity.rotated(by: degrees.toRadians)
+            view.frame = boundedFrame(forView: view)
+        }
+    }
+    
+    public func viewRotation() -> CGFloat? {
+        if let view = selectedView {
+            return CGFloat(atan2f(Float(view.transform.b), Float(view.transform.a)).toDegrees)
+        }
+        
+        return nil
     }
 }

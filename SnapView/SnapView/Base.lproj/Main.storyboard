@@ -35,6 +35,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5yq-n6-Omo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="lR9-6E-gdl">
+                                        <connections>
+                                            <action selector="rotateWithSender:" destination="BYZ-38-t0r" id="fEy-yj-Yfh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -42,9 +52,15 @@
                             <constraint firstItem="jv1-Ba-hA8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9lr-OR-Ceq"/>
                             <constraint firstItem="jv1-Ba-hA8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="BMb-ln-OqD"/>
                             <constraint firstItem="jv1-Ba-hA8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="G5C-OA-zJl"/>
+                            <constraint firstAttribute="trailing" secondItem="5yq-n6-Omo" secondAttribute="trailing" id="NOi-YB-1Gp"/>
+                            <constraint firstItem="5yq-n6-Omo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iO8-2b-t45"/>
+                            <constraint firstItem="5yq-n6-Omo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lJY-uo-Bez"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="snapView" destination="jv1-Ba-hA8" id="fsV-aZ-fZ8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
